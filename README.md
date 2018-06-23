@@ -100,6 +100,38 @@ It is recommended to run the script with 4+ cores as it is another extremely par
 to the DB and iterates through its list of treeIds doing the tracing for each Compact Group galaxy. To save the results,
 each core places the results into a queue which the writing thread reads from to ensure the writes are ACID. 
 
+Example Usage:
+`python evolution_tracing.py --pool_size 16 --group_file_location /path/to/group/file.csv`
+
+Arguments:
+* `--pool_size` Number of CPUs to use
+* `--group_file_location` File contains all Compact Group galaxies to be traced
+
+
+### Plotting the Results
+The plotting script will take the results from the main analysis and the evolution script to create the plots 
+found in Wiens et al 2018. These plots are generated using LaTex formatting and saved in EPS format. 
+
+Example Usage
+```
+python plots.py --resultsdirs /data/compactgroups/tvw/results/nh_0.075_ar_1e-4_st_0.10/ /data/compactgroups/tvw/results/nh_0.050_ar_1e-4_st_0.10/ /data/compactgroups/tvw/results/nh_0.025_ar_1e-4_st_0.10/ \
+                --datadir /data/compactgroups/tvw/data/ \
+                --labels "{\sc nh}$=75$ $kpc$ $h^{-1}$" "{\sc nh}$=50$ $kpc$ $h^{-1}$" "{\sc nh}$=25\$ $kpc$ $h^{-1}$" \
+                --plotlabel "nh" \
+                --snapnum_file snapnum_redshift.csv
+```
+
+Arguments:
+* `--resultsdirs` Directories which contain the outputs from main analysis scripts
+* `--plotlabel` Label of the plot
+* `--datadir` Data where raw snapnum data is stored (directory containing the downloaded data from `get_data.py`)
+* `--plotsdir` Directory to save the plots
+* `--labels` Labels for data plotted in LaTeX formatting
+* `--counts_file` File containing the galaxy counts for each snapnum. Will be recomputed if it doesn't exist
+* `--snapnum_file` File containing the conversions for snapnum value to redshift
+* `--dwarf_limit` Stellar Mass Limit for dwarf galaxies (only used when computing counts file)
+* `--evolution` Run the plots for the evolution (Default is galaxies at each snapnum)
+
 
 
 
