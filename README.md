@@ -12,7 +12,7 @@ The data should be downloaded before processing as it will take a considerable t
 download and waste CPU resources if running on a shared cluster.
 
 ### Setup 
-First, the user will need to register for an with access to the Millennium (link Needed) 
+First, the user will need to register for an with access to the Millennium (http://gavo.mpa-garching.mpg.de/Millennium/Help?page=registration) 
 database. Once proper credentials are received, then the data may be downloaded. 
 
 To download the data, one must run the script `get_data.py` and allow for several hours 
